@@ -1,0 +1,29 @@
+#garden-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+
+            /* Bahçe hissi */
+            background: linear-gradient(#d7f7d7, #a8e3a8);
+            border-radius: 10px;
+        }
+
+        #garden {
+            position: relative;
+            display: block;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .person {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+
+        .full_width {
+            width: 100%;
+            display: block;
+        }

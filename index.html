@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birlik Bahçesi</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <audio src="music.mp3" id="music" loop autoplay muted></audio>
+    <link rel="stylesheet" href="pico.fluid.classless.green.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <article>
+            <h1>Birlik Bahçesi</h1>
+            <footer>
+                <small>💐 Bu birlik bahçesi, hocamız Sunay Dinçer için oluşturulmuştur. 💐</small>
+            </footer>
+        </article>
+
+        <article style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div id="garden-container">
+                <div id="garden"></div>
+            </div>
+
+            <article style="margin-bottom: 0px;">
+                <button type="button" id="btn-send-flower" class="full_width">Çiçek Gönder!</button>
+                <small>🌺 Bugüne dek <small id="num-of-flowers"></small> adet çiçek gönderildi! 🌺</small>
+                <hr>
+                <small>Gönderilen her çiçek, yanınızda olduğumuzu hatırlatsın.</small>
+            </article>
+        </article>
+
+        <article id="container-send-note">
+            <h3>Not Ekle</h3>
+            <form action="">
+                <input type="text" id="input-name" placeholder="Adınızı giriniz...">
+                <small>Bu bilgi zorunlu değildir.</small>
+                <input type="text" id="input-note" placeholder="Notunuzu giriniz..." required>
+                <small>Bu bilgi zorunludur.</small>
+                <button type="button" id="btn-send-note" class="full_width">Gönder</button>
+            </form>
+        </article>
+
+        <article>
+            <h3>Gönderilen Notlar</h3>
+            <p id="note-list-empty">Henüz hiç not yok!</p>
+            <ul id="note-list"></ul>
+        </article>
+
+        <article>
+            <p>Bu web sitesi Süleyman Kara tarafından hazırlanmıştır.</p>
+            <small>Bu sayfadaki 'One Little Triumph' piano müziği
+                Blue Dot Sessions'a aittir ve Creative Commons
+                Attribution-NonCommercial (CC BY-NC) lisansı altında
+                kullanılmıştır. Eserin orijinaline
+                <a href="https://freemusicarchive.org/music/Blue_Dot_Sessions/Piano_Mover/One_Little_Triumph/">
+                    buradan</a> ulaşılabilir.
+            </small>
+            
+            <footer>
+                <label for="checkbox-music">
+                    <input type="checkbox" role="switch" id="checkbox-music" name="checkbox-music">
+                    Müzik Sesini Aç/Kapat
+                </label>
+            </footer>
+            
+        </article>
+
+        <dialog id="dialog">
+            <article>
+                <header>
+                    <button aria-label="Close" rel="prev" id="btn-close-dialog1"></button>
+                    <h3>Uyarı!</h3>
+                </header>
+                <p>Lütfen bir not girin.</p>
+                <footer>
+                    <button autofocus role="button" id="btn-close-dialog2">Tamam</button>
+                </footer>
+            </article>
+        </dialog>
+
+        <dialog id="confirm-dialog">
+            <article>
+                <header>
+                    <button aria-label="Close" rel="prev" id="btn-close-confirm1"></button>
+                    <h3>Dikkat!</h3>
+                </header>
+                <p>Emin misiniz? Bu işlem geri alınamaz.</p>
+                <footer>
+                    <button role="button" id="btn-close-confirm2">İptal</button>
+                    <button autofocus role="button" id="btn-confirm">Gönder</button>
+                </footer>
+            </article>
+        </dialog>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
