@@ -4,23 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Birlik Bahçesi</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <audio src="music.mp3" id="music" loop autoplay muted></audio>
-    <link rel="stylesheet" href="pico.fluid.classless.green.min.css">
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="shortcut icon" href="./assets/img/favicon.ico">
+
+    <audio src="./assets/audio/background_music.mp3" id="background-music" loop autoplay muted></audio>
+
+    <link rel="stylesheet" href="./src/css/pico.fluid.classless.green.min.css">
+    <link rel="stylesheet" href="./src/css/style.css">
 </head>
 
 <body>
-    <main>
         <article>
             <h1>Birlik Bahçesi</h1>
             <footer>
                 <small>💐 Bu birlik bahçesi, hocamız Sunay Dinçer için oluşturulmuştur. 💐</small>
             </footer>
         </article>
-
-        <article style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <article>
             <div id="garden-container">
                 <div id="garden"></div>
             </div>
@@ -33,7 +35,7 @@
             </article>
         </article>
 
-        <article id="container-send-note">
+        <article id="send-note-main">
             <h3>Not Ekle</h3>
             <form action="">
                 <input type="text" id="input-name" placeholder="Adınızı giriniz...">
@@ -61,42 +63,29 @@
             </small>
             
             <footer>
-                <label for="checkbox-music">
-                    <input type="checkbox" role="switch" id="checkbox-music" name="checkbox-music">
+                <label for="music-checkbox">
+                    <input type="checkbox" role="switch" id="music-checkbox" name="music-checkbox">
                     Müzik Sesini Aç/Kapat
                 </label>
             </footer>
             
         </article>
 
-        <dialog id="dialog">
+        <dialog id="dialog-main">
             <article>
                 <header>
-                    <button aria-label="Close" rel="prev" id="btn-close-dialog1"></button>
-                    <h3>Uyarı!</h3>
+                    <button aria-label="Close" rel="prev" id="btn-dialog-close"></button>
+                    <h3 id="dialog-h1"></h3>
                 </header>
-                <p>Lütfen bir not girin.</p>
+                <p id="dialog-p"></p>
                 <footer>
-                    <button autofocus role="button" id="btn-close-dialog2">Tamam</button>
-                </footer>
-            </article>
-        </dialog>
-
-        <dialog id="confirm-dialog">
-            <article>
-                <header>
-                    <button aria-label="Close" rel="prev" id="btn-close-confirm1"></button>
-                    <h3>Dikkat!</h3>
-                </header>
-                <p>Emin misiniz? Bu işlem geri alınamaz.</p>
-                <footer>
-                    <button role="button" id="btn-close-confirm2">İptal</button>
-                    <button autofocus role="button" id="btn-confirm">Gönder</button>
+                    <button autofocus role="button" id="btn-dialog-1"></button>
+                    <button role="button" id="btn-dialog-2"></button>
                 </footer>
             </article>
         </dialog>
     </main>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./src/js/app.mjs"></script>
 </body>
 
 </html>
