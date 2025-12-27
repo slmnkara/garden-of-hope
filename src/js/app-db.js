@@ -65,6 +65,7 @@ export class Database {
                 spanNote.textContent = item.user_note;
                 li.appendChild(boldName);
                 li.appendChild(spanNote);
+                li.className = "bg-green-50 border border-dashed border-green-500 rounded-2xl p-4";
                 this.note_list.appendChild(li);
             });
 
