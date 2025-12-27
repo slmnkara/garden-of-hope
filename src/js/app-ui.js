@@ -19,25 +19,22 @@ export function renderPeople(flowerCount) {
 
     let iconPool = [];
 
-    // 2. Havuzdaki ikon sayısı, çiçek sayısına (count) ulaşana kadar döngü kur
     while (iconPool.length < count) {
-        // Ana ikon listesini kopyala ve karıştır
         const batch = shuffle([...icons]);
-        // Karıştırılmış bu seti havuza ekle
         iconPool.push(...batch);
     }
     
-    // 3. Havuzu tam çiçek sayısı kadar kes (fazlalıkları at)
-    // Artık elimizde [A, C, B, B, A, C, C, B, A...] gibi her seti kendi içinde unique bir liste var.
     iconPool = iconPool.slice(0, count);
 
-    const containerWidth = (container.clientWidth || window.innerWidth)*0.75;
+    // DÜZELTME: Container yerine parentElement kullanıldı
+    const parent = container.parentElement;
+    // Paddingler için biraz pay bırakıyoruz (0.90)
+    const containerWidth = (parent.clientWidth || window.innerWidth) * 0.90; 
+    
     const maxContainerHeight = window.innerHeight * 0.50; 
     const totalArea = containerWidth * maxContainerHeight;
     const areaPerFlower = totalArea / count;
     
-    // Bu alanın karekökü bize hücrenin kenar uzunluğunu verir (Cell Size)
-    // Hafif bir güvenlik payı (0.9) ile çarpıyoruz ki tam sınıra dayanıp taşmasın.
     let cellSize = Math.floor(Math.sqrt(areaPerFlower) * 0.9);
 
     const minSize = 20;
@@ -48,7 +45,7 @@ export function renderPeople(flowerCount) {
     
     let rows = Math.ceil(count / columns);
     while ((rows * cellSize) > maxContainerHeight && cellSize > minSize) {
-        cellSize--; // Sığana kadar piksel piksel küçült
+        cellSize--; 
         columns = Math.floor(containerWidth / cellSize);
         rows = Math.ceil(count / columns);
     }
@@ -56,20 +53,18 @@ export function renderPeople(flowerCount) {
     const iconSize = Math.floor(cellSize * 0.75); 
     const gap = (cellSize - iconSize) / 2;
 
+    // Bu atama yüzünden bir sonraki okumada değer küçülüyordu.
+    // Artık okumayı parent'tan yaptığımız için burası sorun yaratmayacak.
     container.style.width = (columns * cellSize) + "px";
     container.style.height = (rows * cellSize) + "px";
     container.style.position = "relative";
     container.style.margin = "0 auto"; 
 
-    // --- 5. ÇİZİM ---
     for (let i = 0; i < count; i++) {
         const img = document.createElement("img");
         img.src = iconPool[i];
-        
-        // Tailwind 'absolute' kalıyor, boyut classlarını siliyoruz
         img.className = "absolute object-contain"; 
         
-        // JS ile dinamik boyut
         img.style.width = iconSize + "px";
         img.style.height = iconSize + "px";
         
