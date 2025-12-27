@@ -17,7 +17,19 @@ export function renderPeople(flowerCount) {
     const count = flowerCount || 0;
     if (count === 0) return;
 
-    const shuffledIcons = shuffle([...icons]);
+    let iconPool = [];
+
+    // 2. Havuzdaki ikon sayısı, çiçek sayısına (count) ulaşana kadar döngü kur
+    while (iconPool.length < count) {
+        // Ana ikon listesini kopyala ve karıştır
+        const batch = shuffle([...icons]);
+        // Karıştırılmış bu seti havuza ekle
+        iconPool.push(...batch);
+    }
+    
+    // 3. Havuzu tam çiçek sayısı kadar kes (fazlalıkları at)
+    // Artık elimizde [A, C, B, B, A, C, C, B, A...] gibi her seti kendi içinde unique bir liste var.
+    iconPool = iconPool.slice(0, count);
 
     const containerWidth = (container.clientWidth || window.innerWidth)*0.75;
     const maxContainerHeight = window.innerHeight * 0.50; 
@@ -52,7 +64,7 @@ export function renderPeople(flowerCount) {
     // --- 5. ÇİZİM ---
     for (let i = 0; i < count; i++) {
         const img = document.createElement("img");
-        img.src = shuffledIcons[i % shuffledIcons.length];
+        img.src = iconPool[i];
         
         // Tailwind 'absolute' kalıyor, boyut classlarını siliyoruz
         img.className = "absolute object-contain"; 
