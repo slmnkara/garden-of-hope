@@ -30,14 +30,6 @@ export const btn_send_note = document.getElementById("btn-send-note");
 export const note_list = document.getElementById("note-list");
 export const note_list_empty = document.getElementById("note-list-empty");
 
-// ✅ ADD DIALOG EXPORTS
-export const dialog_main = document.getElementById("dialog-main");
-export const dialog_h1 = document.getElementById("dialog-h1");
-export const dialog_p = document.getElementById("dialog-p");
-export const dialog_btn1 = document.getElementById("btn-dialog-1");
-export const dialog_btn2 = document.getElementById("btn-dialog-2");
-export const dialog_btn_close = document.getElementById("btn-dialog-close");
-
 // Import and run AFTER all exports are defined
 import { SetEventListeners } from "./app-events.mjs"
 import { ControlLocalStorage, UpdateFlowers, UpdateNotes } from "./app-db.mjs"

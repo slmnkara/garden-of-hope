@@ -21,8 +21,9 @@ import {
     note_list_empty
 } from './app.mjs';
 
-import { UpdateDialog } from './app-ui.mjs';
 import { renderPeople } from './app-ui.mjs';
+
+const numNotes = document.getElementById("num-notes");
 
 // ✅ DON'T create these at top level - create them inside functions
 // const notesRef = collection(db, "notes");  ❌ This runs immediately
@@ -63,6 +64,8 @@ export async function UpdateNotes() {
         const notesRef = getNotesRef();  // ✅ Get it here
         const q = query(notesRef, orderBy("timestamp", "desc"));
         const querySnapshot = await getDocs(q);
+
+        numNotes.textContent = querySnapshot.size;
         
         note_list.innerHTML = "";
         querySnapshot.forEach((doc) => {
@@ -89,7 +92,7 @@ export const SendNote = async () => {
     const note = input_note.value.trim();
     
     if (note === "") {
-        UpdateDialog("Dikkat", "Lütfen notu boş bırakmayınız.", "Tamam");
+        alert("Dikkat", "Lütfen notu boş bırakmayınız.", "Tamam");
         return;
     }
     

@@ -8,68 +8,119 @@
     <title>Birlik Bahçesi</title>
 
     <link rel="shortcut icon" href="./assets/img/favicon.ico">
-
-    <link rel="stylesheet" href="./src/css/pico.fluid.classless.green.min.css">
-    <link rel="stylesheet" href="./src/css/style.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script type="module" src="./src/js/app.mjs"></script>
 </head>
 
-<body>
-        <article>
-            <h1>Birlik Bahçesi</h1>
-            <footer>
-                <small>💐 Bu birlik bahçesi, hocamız Sunay Dinçer için oluşturulmuştur. 💐</small>
-            </footer>
-        </article>
-        <article>
-            <div id="garden-container">
-                <div id="garden"></div>
+<body class="bg-emerald-50/80 text-slate-600 min-h-screen font-sans selection:bg-teal-200 selection:text-teal-900 flex flex-col">
+    
+    <!-- Ana İçerik Kapsayıcısı -->
+    <main class="flex-grow container mx-auto max-w-6xl p-4 md:p-6 lg:p-8 space-y-6">
+
+        <!-- Header -->
+        <header class="text-center py-4 md:py-8 space-y-2">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-emerald-600 to-teal-600 tracking-tight drop-shadow-sm">
+                Birlik Bahçesi
+            </h1>
+            <div class="inline-flex items-center justify-center bg-white/60 backdrop-blur-sm px-6 py-2 rounded-full border border-emerald-100 shadow-sm">
+                <p class="text-sm md:text-base font-medium text-emerald-800">
+                    💐 Hocamız <span class="font-bold text-teal-600">Sunay Dinçer</span> için sevgiyle oluşturuldu 💐
+                </p>
+            </div>
+        </header>
+
+        <!-- Grid Yapısı: Üstte Bahçe, Altta Paneller -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- 1. Bölüm: Bahçe (Tam Genişlik - En Üstte) -->
+            <section class="lg:col-span-3 bg-white p-4 rounded-3xl shadow-lg shadow-emerald-100/50 border border-emerald-50 flex justify-center">
+                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400"></div>
+                <div class="relative block rounded-2xl bg-gradient-to-b from-sky-100/50 to-emerald-50/50 border-2 border-dashed border-emerald-200 transition-colors hover:border-emerald-300" id="garden">
+                    <!-- Bahçe içeriği JS ile gelecek -->
+                </div>
+            </section>
+
+            <!-- 2. Bölüm: Sol Panel (İşlemler ve Form) -->
+            <div class="lg:col-span-1 space-y-6">
+                
+                <!-- İstatistik & Çiçek Gönder -->
+                <section class="bg-white p-6 rounded-3xl shadow-md shadow-emerald-50 border border-emerald-50 flex flex-col items-center text-center gap-5">
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-bold text-slate-700">Bahçe Durumu</h3>
+                        <p class="text-slate-500 text-sm">
+                            <span class="inline-block bg-pink-100 text-pink-600 px-2 py-0.5 rounded-md font-bold" id="num-of-flowers">0</span> çiçek, 
+                            <span class="inline-block bg-purple-100 text-purple-600 px-2 py-0.5 rounded-md font-bold" id="num-notes">0</span> not
+                        </p>
+                    </div>
+
+                    <button class="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-pink-200 transform transition active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
+                        type="button" id="btn-send-flower">
+                        <span>Çiçek Gönder</span>
+                        <span class="text-xl group-hover:rotate-12 transition-transform">🌼</span>
+                    </button>
+                    
+                    <small class="text-xs text-slate-400 font-medium px-2">
+                        Her bir çiçek, sevgimizin dijital bir yansımasıdır.
+                    </small>
+                </section>
+
+                <!-- Not Ekleme Formu -->
+                <section class="bg-white p-6 rounded-3xl shadow-md shadow-indigo-50 border border-indigo-50">
+                    <h2 class="text-xl font-bold text-slate-700 flex items-center gap-2 mb-4 border-b border-indigo-50 pb-3">
+                        <span>📝</span> Yeni Not Ekle
+                    </h2>
+                    <form class="flex flex-col gap-4">
+                        <div class="space-y-1">
+                            <label for="input-name" class="text-xs font-bold text-slate-400 uppercase tracking-wide ml-1">Adınız</label>
+                            <input type="text" id="input-name" placeholder="Adınızı yazınız..." 
+                                class="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:bg-white focus:border-transparent p-3 outline-none transition-all placeholder:text-slate-400 text-sm">
+                        </div>
+                        
+                        <div class="space-y-1">
+                            <label for="input-note" class="text-xs font-bold text-slate-400 uppercase tracking-wide ml-1">Notunuz</label>
+                            <input type="text" id="input-note" placeholder="Mesajınızı buraya bırakın..." required
+                                class="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:bg-white focus:border-transparent p-3 outline-none transition-all placeholder:text-slate-400 text-sm">
+                        </div>
+
+                        <button type="button" id="btn-send-note" 
+                            class="mt-2 w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-md shadow-indigo-200 transition-all active:bg-indigo-700 cursor-pointer">
+                            Notu Paylaş
+                        </button>
+                    </form>
+                </section>
+
             </div>
 
-            <article style="margin-bottom: 0px;">
-                <button type="button" id="btn-send-flower" class="full_width">Çiçek Gönder!</button>
-                <small>🌺 Bugüne dek <small id="num-of-flowers"></small> adet çiçek gönderildi! 🌺</small>
-                <hr>
-                <small>Gönderilen her çiçek, yanınızda olduğumuzu hatırlatsın.</small>
-            </article>
-        </article>
+            <!-- 3. Bölüm: Sağ Panel (Not Listesi) -->
+            <section class="lg:col-span-2 bg-white p-6 rounded-3xl shadow-md shadow-yellow-50 border border-yellow-50 flex flex-col h-full min-h-[400px]">
+                <div class="flex items-center justify-between mb-6 border-b border-yellow-50 pb-4">
+                    <h3 class="text-xl font-bold text-slate-700 flex items-center gap-2">
+                        <span>💌</span> Gönderilen Notlar
+                    </h3>
+                    <span class="text-xs font-medium text-slate-400 bg-slate-50 px-3 py-1 rounded-full">En Yeniler</span>
+                </div>
+                
+                <div class="flex-grow">
+                    <p id="note-list-empty" class="h-full flex flex-col items-center justify-center text-slate-400 italic gap-2 py-10 bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-100">
+                        <span>Henüz not eklenmedi.</span>
+                        <span class="text-sm not-italic">İlk notu ekleyerek bahçeyi şenlendirin! ✨</span>
+                    </p>
+                    
+                    <!-- Not Listesi Grid -->
+                    <ul id="note-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></ul>
+                </div>
+            </section>
 
-        <article id="send-note-main">
-            <h3>Not Ekle</h3>
-            <form action="">
-                <input type="text" id="input-name" placeholder="Adınızı giriniz...">
-                <small>Bu bilgi zorunlu değildir.</small>
-                <input type="text" id="input-note" placeholder="Notunuzu giriniz..." required>
-                <small>Bu bilgi zorunludur.</small>
-                <button type="button" id="btn-send-note" class="full_width">Gönder</button>
-            </form>
-        </article>
-
-        <article>
-            <h3>Gönderilen Notlar</h3>
-            <p id="note-list-empty">Henüz hiç not yok!</p>
-            <ul id="note-list"></ul>
-        </article>
-
-        <article>
-            <small>Sorun yaşanması halinde <a href="mailto:karasuleyman125@gmail.com">buradan</a> iletişime geçebilirsiniz.</small>
-        </article>
-
-        <dialog id="dialog-main">
-            <article>
-                <header>
-                    <button aria-label="Close" rel="prev" id="btn-dialog-close"></button>
-                    <h3 id="dialog-h1"></h3>
-                </header>
-                <p id="dialog-p"></p>
-                <footer>
-                    <button autofocus role="button" id="btn-dialog-1"></button>
-                    <button role="button" id="btn-dialog-2"></button>
-                </footer>
-            </article>
-        </dialog>
+        </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-slate-400 text-sm">
+        <p>
+            Sorun bildirimi için <a href="mailto:karasuleyman125@gmail.com" class="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors">e-posta</a> gönderebilirsiniz.
+        </p>
+    </footer>
+
 </body>
 
 </html>
