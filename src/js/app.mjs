@@ -16,11 +16,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
-// Audio
-export const background_music = document.getElementById("background-music");
-export const music_checkbox = document.getElementById("music-checkbox");
-background_music.volume = 0.02;
-
 // Flowers
 export const num_of_flowers = document.getElementById("num-of-flowers");
 export const btn_send_flower = document.getElementById("btn-send-flower");

@@ -1,21 +1,16 @@
 import { CloseDialog, UpdateDialog } from "./app-ui.mjs"  // ✅ Add UpdateDialog
 import { SendFlower, SendNote } from "./app-db.mjs";
-import { ControlMusic } from "./app-audio.mjs";
 import {
     dialog_btn1, 
     dialog_btn2, 
     dialog_btn_close,
     btn_send_flower, 
-    btn_send_note,
-    music_checkbox  // ✅ Add this import
+    btn_send_note
 } from "./app.mjs";
 
 let send_note_dialog_flag = false;
 
 export const SetEventListeners = () => {
-    // Audio Events
-    music_checkbox.addEventListener("change", ControlMusic);
-    
     // Database Events
     btn_send_flower.addEventListener("click", () => {
         SendFlower();  // ✅ Remove UpdateFlowers() - it's called inside SendFlower()
